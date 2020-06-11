@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useCallback,useState,useRef,ChangeEvent} from 'react';
 
 function App() {
+  const [morse,setMorse] = useState('')
+  const [text,setText] = useState('')
+  const TextArea = useRef(null)
+  const morseArea = useRef(null)
+
+
+  const textTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
+    setText(e.target.value)
+    setMorse(e.target.value)
+  },[])
+  const morseTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
+    setMorse(e.target.value)
+    setText(e.target.value)
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <textarea 
+        ref={TextArea} 
+        name="text" 
+        id="text" 
+        cols={30} 
+        rows={10} 
+        value={text} 
+        onChange={textTranslate}
+      />
+
+      <textarea 
+        ref={morseArea} 
+        name="morse" 
+        id="morse" 
+        cols={30} 
+        rows={10} 
+        value={morse} 
+        onChange={morseTranslate}
+      />
     </div>
   );
 }
