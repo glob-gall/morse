@@ -14,23 +14,39 @@ function App() {
   }
 
   const textTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
-    setText(e.target.value)
-    const textToMorse = e.target.value.split('')
+    const message = e.target.value
+
+    const validation = /[a-z,0-9]/
+    const valid = validation.test(message)
+    if(!valid){
+      setText('')
+      setMorse('')
+      return
+    }
+    setText(message)
+    const textToMorse = message.split('')
     const morseMessage = textToMorse.map(txt =>{
       if (hasKey(morseItems, txt)){
         return morseItems[txt]
       }
     })
     
-    const message = morseMessage.join(' ')
+    const finalMessage = morseMessage.join(' ')
     
-    setMorse(message)
+    setMorse(finalMessage)
       
   },[])
   const morseTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
-    
-    setMorse(e.target.value)
-    setText(e.target.value)
+    const message = e.target.value
+    const validation = /[^\_,\.]/
+    const invalid = validation.test(message)
+    if(invalid){
+      setMorse('')
+      setText('')
+    }else{
+      setMorse(message)
+      setText(message)
+    }
   },[])
 
   return (
