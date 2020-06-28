@@ -1,7 +1,9 @@
 import React,{useCallback,useState,useRef,ChangeEvent} from 'react';
-import {Container} from './styles'
 import morseItems from '../../entities/morseTranslate'
+import letters from '../../entities/letters'
 import Header from '../../components/Header'
+
+import {Container,ContainerTranslate} from './styles'
 function Translate() {
   const [morse,setMorse] = useState('')
   const [text,setText] = useState('')
@@ -15,7 +17,7 @@ function Translate() {
   const textTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
     const message = e.target.value
 
-    const validation = /[^a-z,0-9]/
+    const validation = /[^a-z,0-9,\s]/
     const valid = validation.test(message)
     if(valid){
       setText('')
@@ -36,41 +38,58 @@ function Translate() {
       
   },[])
   const morseTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
-    const message = e.target.value
-    const validation = /[^\_,\.]/
-    const invalid = validation.test(message)
+    const messageBeforeTranslate = e.target.value
+    const validation = /[^\_,\.,\s]/
+    const invalid = validation.test(messageBeforeTranslate)
     if(invalid){
       setMorse('')
       setText('')
-    }else{
-      setMorse(message)
-      setText(message)
+      return
     }
+    
+    
+    const morseArray = messageBeforeTranslate.split(" ")
+    
+    const arrayTranslated = morseArray.map(morseLetter =>{
+      
+      const morseTranslated = letters.find(letter=> letter.morse === morseLetter)
+      return morseTranslated ? morseTranslated.letter : " "
+    })
+    
+    const translate = arrayTranslated.join('')
+    setMorse(messageBeforeTranslate)
+    setText(translate)
   },[])
 
   return (
     <>
     <Header/>
     <Container >
-      <textarea
-        ref={TextArea} 
-        name="text" 
-        id="text" 
-        cols={30} 
-        rows={10} 
-        value={text} 
-        onChange={textTranslate}
-      />
 
-      <textarea
-        ref={morseArea} 
-        name="morse" 
-        id="morse" 
-        cols={30} 
-        rows={10} 
-        value={morse} 
-        onChange={morseTranslate}
-      />
+      <ContainerTranslate>
+        <h3>Frase</h3>
+        <textarea
+          ref={TextArea} 
+          name="text" 
+          id="text" 
+          cols={30} 
+          rows={10} 
+          value={text} 
+          onChange={textTranslate}
+        />
+      </ContainerTranslate>
+      <ContainerTranslate>
+        <h3>Morse</h3>
+        <textarea
+          ref={morseArea} 
+          name="morse" 
+          id="morse" 
+          cols={30} 
+          rows={10} 
+          value={morse} 
+          onChange={morseTranslate}
+        />
+      </ContainerTranslate>
     </Container>
   </>
   );

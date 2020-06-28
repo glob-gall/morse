@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return(
 
     <Container>
-      <Title>Morse</Title>
+      <Title>Mors .</Title>
     </Container>
   )
   

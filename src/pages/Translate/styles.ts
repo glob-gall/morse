@@ -3,17 +3,29 @@ import styled from 'styled-components'
 export const Container = styled.div`
   font-family:Helvetica, Arial, sans-serif;
 
-  background:#ecfffb;
-  height:100vh;
+  height:90vh;
   display:flex;
   justify-content:center;
   align-items:center;
+`
+
+export const ContainerTranslate = styled.div`
+  h3{
+    color:#ff9000;
+    font-size:25px;
+    margin-left:36px;
+    transition: background-color 0.2s;
+
+    &:hover{
+      color:#cc7300;
+    }
+  }
 
   textarea{
-    background:#b4f1f1;
+    background:#fff;
     margin:5px;
 
-    color:#2d767f;
+    color:#444;
     font-size:22px;
     font-weight:bold;
 
@@ -22,7 +34,7 @@ export const Container = styled.div`
 
     max-width:300px;
     max-height:300px;
-    border:2px solid #1e6262;
+    border:2px solid #333;
     border-radius:5px;
   }
 `
