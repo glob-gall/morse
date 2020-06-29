@@ -1,5 +1,5 @@
 import React,{useCallback,useState,useRef,ChangeEvent} from 'react';
-import morseItems from '../../entities/morseTranslate'
+
 import letters from '../../entities/letters'
 import Header from '../../components/Header'
 
@@ -10,49 +10,48 @@ function Translate() {
   const TextArea = useRef(null)
   const morseArea = useRef(null)
 
-  function hasKey<O>(obj: O, key: keyof any): key is keyof O {
-    return key in obj
-  }
-
   const textTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
-    const message = e.target.value
+    const messageBeforeTranslate = e.target.value
 
-    const validation = /[^a-z,0-9,\s]/
-    const valid = validation.test(message)
-    if(valid){
-      setText('')
-      setMorse('')
+    const validation = /[^a-z0-9\s]/
+    const invalid = validation.test(messageBeforeTranslate)
+    if(invalid){
       return
     }
-    setText(message)
-    const textToMorse = message.split('')
-    const morseMessage = textToMorse.map(txt =>{
-      if (hasKey(morseItems, txt)){
-        return morseItems[txt]
-      }
+    setText(messageBeforeTranslate)
+    
+    const textArray = messageBeforeTranslate.split("")
+    
+    const arrayTranslated = textArray.map(textLetter =>{
+      
+      const textTranslated = letters.find(letter=> letter.letter === textLetter)
+      return textTranslated ? textTranslated.morse : " "
     })
     
-    const finalMessage = morseMessage.join(' ')
+    const finalMessage = arrayTranslated.join(' ')
     
     setMorse(finalMessage)
       
   },[])
   const morseTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
     const messageBeforeTranslate = e.target.value
-    const validation = /[^\_,\.,\s]/
+    const validation = /[^_.\s]/
     const invalid = validation.test(messageBeforeTranslate)
     if(invalid){
-      setMorse('')
-      setText('')
+      
       return
     }
     
     
     const morseArray = messageBeforeTranslate.split(" ")
+    //   .map(morseLetter=>{
+    //     return (morseLetter.length > 5) ? `${morseLetter} ` : morseLetter
+    //   })
+    // console.log(morseArray);
     
-    const arrayTranslated = morseArray.map(morseLetter =>{
+    const arrayTranslated = morseArray.map(textLetter =>{
       
-      const morseTranslated = letters.find(letter=> letter.morse === morseLetter)
+      const morseTranslated = letters.find(letter=> letter.morse === textLetter)
       return morseTranslated ? morseTranslated.letter : " "
     })
     
