@@ -22,7 +22,7 @@ export const ContainerTranslate = styled.div`
   }
 
   textarea{
-    background:#fff;
+    background:#fdfdfd;
     margin:5px;
 
     color:#444;

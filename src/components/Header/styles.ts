@@ -21,3 +21,12 @@ export const Title = styled.h1`
     color:#3174d3;
   }
 `
+export const Nav = styled.div`
+  margin-left:auto;
+  margin-right:36px;
+  button{
+    border:0;
+    background:transparent;
+    border-radius:50%;
+  }
+`
