@@ -13,7 +13,7 @@ function Translate() {
   const textTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
     const messageBeforeTranslate = e.target.value
 
-    const validation = /[^a-z0-9\s]/
+    const validation = /[^a-z0-9\s]/i
     const invalid = validation.test(messageBeforeTranslate)
     if(invalid){
       return
@@ -24,7 +24,7 @@ function Translate() {
     
     const arrayTranslated = textArray.map(textLetter =>{
       
-      const textTranslated = letters.find(letter=> letter.letter === textLetter)
+      const textTranslated = letters.find(letter=> letter.letter === textLetter.toLowerCase())
       return textTranslated ? textTranslated.morse : " "
     })
     
@@ -44,10 +44,6 @@ function Translate() {
     
     
     const morseArray = messageBeforeTranslate.split(" ")
-    //   .map(morseLetter=>{
-    //     return (morseLetter.length > 5) ? `${morseLetter} ` : morseLetter
-    //   })
-    // console.log(morseArray);
     
     const arrayTranslated = morseArray.map(textLetter =>{
       
@@ -56,7 +52,9 @@ function Translate() {
     })
     
     const translate = arrayTranslated.join('')
-    setMorse(messageBeforeTranslate)
+    const morseAfterTranslate = morseArray.filter(morseLetter=> morseLetter.length <= 5).join(" ")
+    
+    setMorse(morseAfterTranslate)
     setText(translate)
   },[])
 
