@@ -64,7 +64,7 @@ function Translate() {
     <Container >
 
       <ContainerTranslate>
-        <h3>Frase</h3>
+        <h3>Texto</h3>
         <textarea
           ref={TextArea} 
           name="text" 

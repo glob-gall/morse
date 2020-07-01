@@ -1,7 +1,7 @@
 import React from 'react'
 import {FiHelpCircle} from 'react-icons/fi'
 
-import {Container,Title,Nav} from './styles'
+import {Container,Title,Nav,ToolTip} from './styles'
 
 const Header: React.FC = () => {
 
@@ -9,7 +9,11 @@ const Header: React.FC = () => {
 
     <Container>
       <Title>Mors .</Title>
-      <Nav><button><FiHelpCircle size={28} color="#4285F4"/></button></Nav>
+      <Nav>
+        <ToolTip>
+          <FiHelpCircle size={28} color="#4285F4"/>
+        </ToolTip>
+      </Nav>
     </Container>
   )
   
