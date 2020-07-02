@@ -35,7 +35,7 @@ function Translate() {
   },[])
   const morseTranslate = useCallback((e:ChangeEvent<HTMLTextAreaElement>)=>{
     const messageBeforeTranslate = e.target.value
-    const validation = /[^_.\s]/
+    const validation = /[^-.\s]/
     const invalid = validation.test(messageBeforeTranslate)
     if(invalid){
       
