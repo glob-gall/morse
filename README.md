@@ -6,3 +6,4 @@
 - **ReactJS**
 - **TypeScript**
 
+![morse is awesome](https://github.com/glob-gall/morse/blob/master/images/translate.png)
