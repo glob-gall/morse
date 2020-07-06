@@ -6,4 +6,12 @@
 - **ReactJS**
 - **TypeScript**
 
-![morse is awesome](https://github.com/glob-gall/morse/blob/master/images/translate.png)
+
+### Prévia:
+![morse is awesome](https://raw.githubusercontent.com/glob-gall/morse/master/images/translate.PNG)
+
+### Ao abrir o projeto
+`yarn`
+`yarn start`
+
+ node e yarn requeridos
