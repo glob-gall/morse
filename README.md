@@ -12,6 +12,7 @@
 
 ### Ao abrir o projeto
 `yarn`
+
 `yarn start`
 
  node e yarn requeridos
