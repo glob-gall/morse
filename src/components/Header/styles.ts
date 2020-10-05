@@ -5,15 +5,15 @@ export const Container = styled.header`
   
   height:10vh;
   border-bottom:solid 1px #000;
-  margin: 0 56px;
+  margin: 0 36px;
   display:flex;
   align-items:center;
 `
 
 export const Title = styled.h1`
   color:#4285F4;
-  font-size:36px;
-  margin-left:36px;
+  font-size:28px;
+  /* margin-left:36px; */
 
 
   transition: background-color 0.2s;
@@ -24,14 +24,14 @@ export const Title = styled.h1`
 `
 export const Nav = styled.div`
   margin-left:auto;
-  margin-right:36px;
+  /* margin-right:36px; */
 `
 export const ToolTip = styled.span`
     border:0;
     background:transparent;
     border-radius:50%;
     
-    position:relative;
+    /* position:relative; */
       &::after {
       width:200px;
       background-color: #4285F4;
@@ -65,15 +65,15 @@ export const ToolTip = styled.span`
 
     &::after {
       content: "digite sua mensagem no campo  ' Texto '  para traduzir para código morse. E digite no campo  ' Morse '  para traduzir pra linguagem comum";
-      bottom: 0;
-      left: -70%;
-      transform: translate(-50%, calc(100% + 10px));
+      top: 54px;
+      right: 12px;
+      /* transform: translate(-50%, calc(50% + 5px)); */
     }
 
     &::before {
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, calc(100% + 5px)) rotate(45deg);
+      top: 50px;
+      right: 42px;
+      transform: rotate(45deg);
     }
   
 `

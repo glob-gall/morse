@@ -2,8 +2,10 @@ import React,{useCallback,useState,useRef,ChangeEvent} from 'react';
 
 import letters from '../../entities/letters'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 import {Container,ContainerTranslate} from './styles'
+import Content from '../../components/Content';
 function Translate() {
   const [morse,setMorse] = useState('')
   const [text,setText] = useState('')
@@ -64,7 +66,7 @@ function Translate() {
     <Container >
 
       <ContainerTranslate>
-        <h3>Texto</h3>
+        <h2>Texto</h2>
         <textarea
           ref={TextArea} 
           name="text" 
@@ -76,7 +78,7 @@ function Translate() {
         />
       </ContainerTranslate>
       <ContainerTranslate>
-        <h3>Morse</h3>
+        <h2>Morse</h2>
         <textarea
           ref={morseArea} 
           name="morse" 
@@ -88,6 +90,8 @@ function Translate() {
         />
       </ContainerTranslate>
     </Container>
+    <Content/>
+    <Footer/>
   </>
   );
 }
